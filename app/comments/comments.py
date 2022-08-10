@@ -20,8 +20,6 @@ async def get_post_list(post_id: int, limit: int = 10, page: int = 1) -> Comment
     comments = await crud.select_comments(post_id=post_id, limit=limit, page=page)
     total = await crud.count_total_comments(post_id=post_id)
 
-    print(dict(list(comments)[0]))
-
     return CommentList(**pagination(data=comments, limit=limit, page=page, total=total))
 
 
